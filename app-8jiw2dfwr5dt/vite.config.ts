@@ -5,10 +5,12 @@ import path from 'path';
 import { miaodaDevPlugin } from 'miaoda-sc-plugin';
 
 export default defineConfig({
-  base: './', // ← THIS IS CRUCIAL
+  base: './',  // Important for production asset paths
   plugins: [
     react(),
-    svgr({ svgrOptions: { icon: true, exportType: 'named', namedExport: 'ReactComponent' } }),
+    svgr({
+      svgrOptions: { icon: true, exportType: 'named', namedExport: 'ReactComponent' },
+    }),
     process.env.NODE_ENV === 'development' ? miaodaDevPlugin() : null
   ].filter(Boolean),
   resolve: { alias: { '@': path.resolve(__dirname, './src') } },
